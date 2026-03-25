@@ -24,6 +24,9 @@ class SchoolClass:
 
     def rank_matter_3(self):
         return sorted(self.students, key=lambda s: s.m3, reverse=True)
+    
+    def __iter__(self):
+        return iter(self.rank_matter_1())
 
 
 if __name__ == "__main__":
@@ -34,3 +37,6 @@ if __name__ == "__main__":
     print(school_class.rank_matter_1())
     print(school_class.rank_matter_2())
     print(school_class.rank_matter_3())
+    
+    for s in school_class:
+        print(s.name)
