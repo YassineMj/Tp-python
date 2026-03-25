@@ -1,6 +1,17 @@
 from collections.abc import Iterator
 
+def add_matter4(cls):
+    original_init = cls.__init__
 
+    def new_init(self, name, m1, m2, m3, m4=0):
+        original_init(self, name, m1, m2, m3)
+        self.m4 = m4
+
+    cls.__init__ = new_init
+    return cls
+
+
+@add_matter4
 class Student:
     def __init__(self, name, m1, m2, m3):
         self.name = name
@@ -82,3 +93,6 @@ if __name__ == "__main__":
 
     for s in school_class.iter_matter_3():
         print(s.name)
+    
+    s = Student('Test', 10, 10, 10, 15)
+    print(s.m4)
